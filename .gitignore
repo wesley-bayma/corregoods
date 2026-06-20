@@ -1,0 +1,11 @@
+# Skills instaladas / estado de ferramentas (não fazem parte do projeto)
+.agents/
+.claude/
+.gstack/
+skills-lock.json
+
+# Sistema
+node_modules/
+*.tmp.png
+.DS_Store
+Thumbs.db

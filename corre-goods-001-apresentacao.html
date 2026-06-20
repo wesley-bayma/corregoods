@@ -1,0 +1,1165 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>CORRE GOODS — running / music / street · Apresentação 001</title>
+<meta name="description" content="CORRE GOODS — social run + DJ set + after run em São Luís. Apresentação estratégica da primeira edição 001: A RUA É O PONTO." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,500;1,700&family=Martian+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+/* ============================================================
+   CORRE GOODS · sistema visual
+   Paleta e wordmark fiéis ao guia de marca (assets/*.png)
+   ============================================================ */
+:root{
+  --off-white:#ECE7DD;
+  --bone:#F4F1EA;
+  --sand:#E1D4BF;
+  --sand-deep:#D3C3A8;
+  --ink:#15130E;
+  --ink-2:#211E16;
+  --ink-soft:#2C2820;
+  --warm-gray:#5E5A50;
+  --warm-gray-2:#8C8779;
+  --text-2:#4A453B;
+  --acid:#C9F20C;
+  --acid-deep:#A6C90A;
+  --acid-ink:#44520A; /* verde escuro legível: usado quando o verde é TEXTO sobre fundo claro */
+  --line:rgba(21,19,14,.14);
+  --line-strong:rgba(21,19,14,.30);
+  --line-light:rgba(236,231,221,.16);
+  --maxw:1320px;
+  --ease:cubic-bezier(.16,1,.3,1);
+  --pad: clamp(20px, 5vw, 76px);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  font-family:'Archivo',system-ui,sans-serif;
+  background:var(--off-white);
+  color:var(--ink);
+  font-weight:400;
+  line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  text-rendering:optimizeLegibility;
+  overflow-x:hidden;
+}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+::selection{background:var(--acid);color:var(--ink)}
+
+/* ---------- tipografia ---------- */
+.mono{font-family:'Martian Mono',ui-monospace,monospace;font-weight:500;letter-spacing:-.02em}
+.tag{
+  font-family:'Martian Mono',monospace;
+  font-size:clamp(9px,1vw,11px);
+  font-weight:500;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+}
+h1,h2,h3{font-weight:800;line-height:.96;letter-spacing:-.03em;text-wrap:balance}
+.display{
+  font-weight:900;
+  letter-spacing:-.035em;
+  line-height:.9;
+  text-transform:uppercase;
+}
+p,li,figcaption{text-wrap:pretty}
+.lede{font-size:clamp(17px,2vw,22px);line-height:1.45;max-width:62ch;color:var(--ink-soft)}
+.muted{color:var(--warm-gray)}
+
+/* ---------- layout ---------- */
+.wrap{max-width:var(--maxw);margin:0 auto;padding-inline:var(--pad)}
+section{position:relative}
+.dark{background:var(--ink);color:var(--off-white)}
+.dark .muted{color:var(--warm-gray-2)}
+.dark .lede{color:#CFC9BC}
+.sand{background:var(--sand)}
+.divider{height:1px;background:var(--line);border:0}
+.dark .divider{background:var(--line-light)}
+
+.section-head{
+  display:flex;align-items:baseline;justify-content:space-between;
+  gap:24px;flex-wrap:wrap;
+  padding-block:clamp(64px,8.5vw,128px) clamp(32px,3.5vw,52px);
+}
+.section-head .idx{color:var(--acid-ink)}
+.dark .section-head .idx{color:var(--acid)}
+.kicker{display:flex;align-items:center;gap:10px;color:var(--warm-gray)}
+.dark .kicker{color:var(--warm-gray-2)}
+.kicker .dot{width:7px;height:7px;border-radius:50%;background:var(--acid);box-shadow:0 0 0 4px rgba(201,242,12,.18)}
+/* fecho de seção: respiro de rodapé consistente (~mesma medida em todas) */
+.sec-end{padding-bottom:clamp(80px,9.5vw,124px)}
+
+/* ---------- grain / textura sutil ---------- */
+.grain::after{
+  content:"";position:absolute;inset:0;pointer-events:none;z-index:0;
+  background-image:radial-gradient(rgba(21,19,14,.05) 1px, transparent 1px);
+  background-size:4px 4px;opacity:.5;mix-blend-mode:multiply;
+}
+.dark.grain::after{
+  background-image:radial-gradient(rgba(255,255,255,.05) 1px, transparent 1px);
+  mix-blend-mode:screen;opacity:.4;
+}
+.dark .wrap,.dark .marquee-track{position:relative;z-index:1}
+
+/* ============================================================
+   NAV
+   ============================================================ */
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:14px var(--pad);
+  background:rgba(236,231,221,.78);
+  backdrop-filter:saturate(140%) blur(12px);
+  -webkit-backdrop-filter:saturate(140%) blur(12px);
+  border-bottom:1px solid var(--line);
+  transition:transform .5s var(--ease);
+}
+.nav.hide{transform:translateY(-100%)}
+.nav-logo{font-weight:900;letter-spacing:-.04em;font-size:18px;text-transform:uppercase;display:flex;align-items:center;gap:1px}
+.nav-logo .pt{color:var(--acid-deep)}
+.nav-links{display:flex;gap:28px;align-items:center}
+.nav-links a{font-size:13px;font-weight:600;color:var(--ink-soft);transition:color .2s;padding-block:6px;display:inline-flex;align-items:center;position:relative}
+.nav-links a:not(.nav-cta)::after{content:"";position:absolute;left:0;right:0;top:50%;height:40px;transform:translateY(-50%)} /* hit area ≥40px sem mudar o layout */
+.nav-links a:hover{color:var(--ink)}
+.nav-cta{
+  font-family:'Martian Mono',monospace;font-size:11px;font-weight:600;letter-spacing:.06em;
+  text-transform:uppercase;background:var(--acid);color:var(--ink);
+  padding:10px 14px 10px 16px;border-radius:2px;border:1px solid var(--acid);
+  transition:background .25s,color .25s,border-color .25s,transform .3s var(--ease);
+}
+.nav-cta:hover{background:var(--acid-deep);color:var(--ink);border-color:var(--acid-deep);transform:translateY(-1px)}
+/* make-interfaces-feel-better · princípio 12: scale on press (sempre 0.96) */
+.btn:active{transform:scale(.96)}
+.nav-cta:active{transform:translateY(-1px) scale(.96)}
+@media(max-width:880px){.nav-links a:not(.nav-cta){display:none}}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero{padding-top:128px;padding-bottom:0;overflow:hidden}
+.hero-top{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-bottom:clamp(24px,3vw,44px)}
+.hero-sig{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.hero-sig .slash{color:var(--acid-ink);font-weight:900}
+.hero-word{
+  font-weight:900;letter-spacing:-.045em;line-height:.82;text-transform:uppercase;
+  font-size:clamp(58px,16.5vw,250px);
+}
+.hero-word .pt{color:var(--acid-deep)}
+.hero-grid{
+  display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(18px,2.4vw,36px);
+  align-items:end;margin-top:clamp(34px,5vw,64px);
+}
+.hero-copy{padding-bottom:8px}
+.hero-copy .lede{margin-top:22px}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+.btn{
+  display:inline-flex;align-items:center;gap:10px;
+  font-weight:700;font-size:14px;letter-spacing:.01em;
+  padding:14px 20px 14px 22px;border-radius:2px;cursor:pointer;border:1px solid var(--ink);
+  transition:transform .3s var(--ease),background .25s,color .25s,border-color .25s;
+}
+.btn .arr{transition:transform .3s var(--ease)}
+.btn:hover .arr{transform:translateX(4px)}
+.btn-solid{background:var(--ink);color:var(--off-white)}
+.btn-solid:hover{background:var(--acid);color:var(--ink);border-color:var(--acid)}
+.btn-ghost{background:transparent;color:var(--ink)}
+.btn-ghost:hover{background:var(--ink);color:var(--off-white)}
+.dark .btn-ghost{color:var(--off-white);border-color:var(--off-white)}
+.dark .btn-ghost:hover{background:var(--off-white);color:var(--ink)}
+.dark .btn-solid{background:var(--acid);color:var(--ink);border-color:var(--acid)}
+
+.hero-stack{display:flex;flex-direction:column;gap:14px}
+.hero-meta{display:flex;flex-wrap:wrap;gap:8px}
+.hero-edition{display:flex;flex-direction:column;gap:6px;margin-bottom:20px}
+.hero-edition b{font-weight:900;letter-spacing:-.03em;text-transform:uppercase;font-size:clamp(18px,2.4vw,27px);display:inline-flex;align-items:center;gap:10px}
+.hero-edition b::before{content:"";width:11px;height:11px;background:var(--acid);flex:0 0 auto}
+.hero-edition span{font-family:'Martian Mono',monospace;font-size:12px;letter-spacing:.04em;color:var(--ink-soft);padding-left:21px}
+.hero-edition .hl{color:var(--acid-ink);font-weight:600}
+.chip{
+  font-family:'Martian Mono',monospace;font-size:11px;font-weight:500;letter-spacing:.04em;
+  border:1px solid var(--line-strong);padding:8px 12px;border-radius:999px;color:var(--ink-soft);
+}
+.chip.acid{background:var(--acid);border-color:var(--acid);color:var(--ink)}
+
+@media(max-width:820px){.hero-grid{grid-template-columns:1fr}.hero-copy{order:2}}
+
+/* ---------- frame / placeholder art-directed ---------- */
+.frame{
+  position:relative;border-radius:6px;overflow:hidden;isolation:isolate;
+  background:linear-gradient(150deg,var(--sand) 0%,var(--sand-deep) 55%,#B7A687 100%);
+  border:1px solid var(--line);
+  display:flex;align-items:flex-end;
+}
+.frame.dark-frame{background:linear-gradient(150deg,#2A271E 0%,#1A1812 60%,#100E0A 100%);border-color:var(--line-light)}
+.frame.acid-frame{background:linear-gradient(150deg,#1A1812 0%,#15130E 70%,#0E0C08 100%)}
+.frame::before{ /* watermark monograma */
+  content:"CG";position:absolute;top:14px;right:18px;z-index:1;
+  font-weight:900;font-size:clamp(28px,5vw,64px);letter-spacing:-.06em;
+  color:rgba(21,19,14,.10);
+}
+.frame.dark-frame::before,.frame.acid-frame::before{color:rgba(236,231,221,.10)}
+.frame::after{ /* grain */
+  content:"";position:absolute;inset:0;z-index:0;
+  background-image:radial-gradient(rgba(0,0,0,.06) 1px,transparent 1px);
+  background-size:5px 5px;opacity:.6;
+}
+.frame-cap{
+  position:relative;z-index:2;width:100%;
+  display:flex;justify-content:space-between;align-items:flex-end;gap:12px;
+  padding:16px;color:var(--ink);
+}
+.frame.dark-frame .frame-cap,.frame.acid-frame .frame-cap{color:var(--off-white)}
+.frame-cap .label{display:flex;flex-direction:column;gap:4px;max-width:78%}
+.frame-cap .label .t{font-weight:700;font-size:14px;line-height:1.2;letter-spacing:-.01em}
+.frame-cap .label .s{font-family:'Martian Mono',monospace;font-size:10px;letter-spacing:.04em;opacity:.7}
+.frame-cap .ratio{
+  font-family:'Martian Mono',monospace;font-size:10px;letter-spacing:.04em;
+  border:1px solid currentColor;border-radius:999px;padding:5px 9px;opacity:.65;white-space:nowrap;
+}
+.frame-tag{
+  position:absolute;top:14px;left:14px;z-index:2;
+  background:var(--acid);color:var(--ink);
+  font-family:'Martian Mono',monospace;font-size:10px;font-weight:600;letter-spacing:.08em;
+  text-transform:uppercase;padding:6px 10px;border-radius:2px;
+}
+.ar-hero{aspect-ratio:16/13}
+.ar-tall{aspect-ratio:3/4}
+.ar-wide{aspect-ratio:16/9}
+.ar-sq{aspect-ratio:1/1}
+.ar-ultra{aspect-ratio:21/9}
+/* foto real: aparece sobre o placeholder quando o arquivo existe na pasta assets/ */
+.frame-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1;outline:1px solid rgba(0,0,0,.1);outline-offset:-1px}
+.frame.dark-frame .frame-photo,.frame.acid-frame .frame-photo{outline-color:rgba(255,255,255,.1)}
+.frame.has-photo::before,.frame.has-photo::after{display:none}
+.frame.has-photo .frame-tag{display:none}
+.frame.has-photo .frame-cap{color:#fff;padding-top:48px;background:linear-gradient(transparent,rgba(8,7,4,.72))}
+
+/* ============================================================
+   MARQUEE
+   ============================================================ */
+.marquee{
+  border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+  padding:0;overflow:hidden;white-space:nowrap;margin-top:clamp(40px,6vw,90px);
+}
+.dark .marquee,.marquee.on-dark{border-color:var(--line-light)}
+.marquee-track{display:inline-flex;gap:0;animation:marq 32s linear infinite;will-change:transform}
+.marquee-track span{
+  font-weight:900;letter-spacing:-.03em;text-transform:uppercase;
+  font-size:clamp(28px,5vw,64px);padding:18px 0;display:inline-flex;align-items:center;
+}
+.marquee-track .sep{color:var(--acid-ink);padding-inline:clamp(18px,3vw,46px);font-size:.7em}
+.dark .marquee-track .sep,.marquee.on-dark .marquee-track .sep{color:var(--acid)}
+@keyframes marq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ============================================================
+   TESE — stack tipográfico
+   ============================================================ */
+.tese-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,5vw,72px);align-items:start;padding-bottom:clamp(60px,8vw,120px)}
+.tese-title{font-size:clamp(40px,8vw,108px);font-weight:900;letter-spacing:-.04em;line-height:.86;text-transform:uppercase}
+.tese-title em{font-style:normal;color:var(--acid-ink)}
+.equation{display:flex;flex-direction:column;gap:0;margin-top:8px;border-top:1px solid var(--line)}
+.eq-row{display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:baseline;padding:18px 0;border-bottom:1px solid var(--line)}
+.eq-row .k{font-weight:900;font-size:clamp(22px,3vw,34px);letter-spacing:-.03em;text-transform:uppercase}
+.eq-row .k .pt{color:var(--acid-deep)}
+.eq-row .v{color:var(--text-2);font-size:15px;font-weight:500;line-height:1.4}
+@media(max-width:760px){.tese-grid{grid-template-columns:1fr}}
+
+/* ============================================================
+   DATA LEDGER (oportunidade)
+   ============================================================ */
+.ledger{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line-light)}
+.ledger .cell{padding:clamp(24px,3vw,40px) clamp(24px,2.4vw,36px);border-bottom:1px solid var(--line-light);border-right:1px solid var(--line-light)}
+.ledger .cell:nth-child(3n+1){padding-left:0}
+.ledger .cell:nth-child(3n){border-right:0;padding-right:0}
+.ledger .num{font-weight:900;letter-spacing:-.045em;line-height:.9;font-size:clamp(40px,6vw,84px)}
+.ledger .num .pt{color:var(--acid)}
+.ledger .desc{margin-top:12px;color:#CFC9BC;font-size:14px;line-height:1.45;max-width:34ch}
+.ledger .src{display:block;margin-top:8px;font-family:'Martian Mono',monospace;font-size:9px;letter-spacing:.04em;color:var(--warm-gray-2);text-transform:uppercase}
+@media(max-width:820px){
+  .ledger{grid-template-columns:1fr 1fr}
+  .ledger .cell{padding-left:clamp(24px,2.4vw,36px);padding-right:clamp(24px,2.4vw,36px);border-right:1px solid var(--line-light)}
+  .ledger .cell:nth-child(2n+1){padding-left:0}
+  .ledger .cell:nth-child(2n){padding-right:0;border-right:0}
+}
+@media(max-width:520px){.ledger{grid-template-columns:1fr}.ledger .cell{padding-left:0;padding-right:0;border-right:0}}
+
+.opp-intro{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,4vw,64px);align-items:end;padding-bottom:clamp(36px,4vw,56px)}
+@media(max-width:760px){.opp-intro{grid-template-columns:1fr}}
+
+/* ============================================================
+   EXPERIÊNCIA — passos numerados (sequência real)
+   ============================================================ */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:6px;overflow:hidden;margin-bottom:clamp(60px,8vw,110px)}
+.step{background:var(--off-white);padding:clamp(24px,2.4vw,34px);min-height:210px;display:flex;flex-direction:column;justify-content:space-between;gap:30px;transition:background .35s var(--ease)}
+.step:hover{background:var(--bone)}
+.step .n{font-family:'Martian Mono',monospace;font-size:13px;font-weight:600;color:var(--acid-ink)}
+.step h3{font-size:clamp(22px,2.4vw,30px);text-transform:uppercase;letter-spacing:-.03em}
+.step p{color:var(--text-2);font-size:14.5px;line-height:1.45;margin-top:10px}
+.step .head{display:flex;justify-content:space-between;align-items:flex-start}
+.step .ic{font-weight:900;font-size:20px;color:var(--line-strong)}
+@media(max-width:880px){.steps{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.steps{grid-template-columns:1fr}}
+
+/* ============================================================
+   EDIÇÃO 001 — credencial / poster
+   ============================================================ */
+.ed-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(28px,4vw,60px);align-items:stretch;padding-bottom:clamp(60px,8vw,110px)}
+@media(max-width:860px){.ed-grid{grid-template-columns:1fr}}
+.ed-poster{
+  background:var(--ink-2);border:1px solid var(--line-light);border-radius:8px;
+  padding:clamp(28px,3vw,48px);position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;min-height:440px;
+}
+.ed-poster .badge{position:absolute;top:0;right:0;background:var(--acid);color:var(--ink);font-family:'Martian Mono',monospace;font-size:11px;font-weight:600;letter-spacing:.08em;padding:8px 14px;border-bottom-left-radius:8px}
+.ed-num{font-weight:900;font-size:clamp(96px,20vw,210px);line-height:.78;letter-spacing:-.06em;color:var(--off-white)}
+.ed-num .pt{color:var(--acid)}
+.ed-poster h3{font-size:clamp(28px,4vw,52px);text-transform:uppercase;letter-spacing:-.04em;margin-top:6px}
+.ed-poster .sub{font-family:'Martian Mono',monospace;font-size:12px;letter-spacing:.1em;color:var(--acid);text-transform:uppercase;margin-top:14px}
+.ed-spec{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:0}
+.ed-spec li{display:flex;gap:10px;align-items:baseline;padding:11px 0;border-bottom:1px solid var(--line-light);font-size:14.5px;color:#D7D1C4}
+.ed-spec li::before{content:"";width:7px;height:7px;background:var(--acid);flex:0 0 auto;transform:translateY(1px)}
+.ed-copy .lede{margin-bottom:22px}
+.ed-copy h3{font-size:clamp(26px,3vw,40px);text-transform:uppercase;margin-bottom:18px}
+.dayflow{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--line-light);border:1px solid var(--line-light);border-radius:8px;overflow:hidden;margin-top:clamp(24px,3vw,40px)}
+.dayflow .d{background:var(--ink-2);padding:clamp(16px,1.6vw,22px)}
+.dayflow .d .t{font-family:'Martian Mono',monospace;font-size:12px;color:var(--acid);font-weight:600;font-variant-numeric:tabular-nums}
+.dayflow .d .l{font-size:13.5px;color:#CFC9BC;margin-top:8px;line-height:1.35}
+@media(max-width:760px){.dayflow{grid-template-columns:1fr 1fr}}
+@media(max-width:460px){.dayflow{grid-template-columns:1fr}}
+
+/* ============================================================
+   VISUAL DA MARCA
+   ============================================================ */
+.brand-board{border-radius:8px;overflow:hidden;background:var(--bone);margin-bottom:clamp(28px,3vw,44px)}
+.brand-board img{width:100%;display:block;aspect-ratio:1672/892;object-fit:cover;object-position:top;outline:1px solid rgba(0,0,0,.1);outline-offset:-1px;border-radius:8px}
+.brand-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:clamp(14px,1.6vw,22px);padding-bottom:clamp(60px,8vw,110px)}
+.bg-card{border:1px solid var(--line);border-radius:6px;padding:22px;background:var(--bone);display:flex;flex-direction:column;justify-content:space-between;gap:24px;min-height:180px}
+.bg-logo{grid-column:span 4}
+.bg-mono{grid-column:span 4}
+.bg-pal{grid-column:span 4}
+.bg-type{grid-column:span 7}
+.bg-apps{grid-column:span 5}
+@media(max-width:860px){.bg-logo,.bg-mono,.bg-pal{grid-column:span 12}.bg-type,.bg-apps{grid-column:span 12}}
+.bg-card .cap{font-family:'Martian Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--warm-gray)}
+.bg-card img{border-radius:4px;outline:1px solid rgba(0,0,0,.1);outline-offset:-1px}
+.swatches{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+.sw{aspect-ratio:1;border-radius:4px;border:1px solid var(--line);position:relative}
+.sw span{position:absolute;bottom:6px;left:6px;font-family:'Martian Mono',monospace;font-size:8px;letter-spacing:.02em}
+.type-spec{display:flex;flex-direction:column;gap:14px}
+.type-spec .row{display:flex;align-items:baseline;gap:16px;border-bottom:1px solid var(--line);padding-bottom:12px}
+.type-spec .big{font-weight:900;font-size:clamp(28px,4vw,46px);letter-spacing:-.03em;text-transform:uppercase}
+.type-spec .meta{font-family:'Martian Mono',monospace;font-size:11px;color:var(--warm-gray)}
+
+/* ============================================================
+   PÚBLICO — tag cloud editorial
+   ============================================================ */
+.aud-wrap{padding-bottom:clamp(60px,8vw,110px)}
+.aud-cloud{display:flex;flex-wrap:wrap;gap:12px;margin-top:8px;max-width:1000px}
+.aud-cloud .a{
+  font-weight:700;letter-spacing:-.02em;text-transform:uppercase;
+  font-size:clamp(16px,2.4vw,30px);padding:8px 18px;border:1px solid var(--line-strong);border-radius:999px;
+  transition:background .25s,color .25s,border-color .25s;
+}
+.aud-cloud .a:hover{background:var(--ink);color:var(--off-white);border-color:var(--ink)}
+.aud-cloud .a.acid{background:var(--acid);border-color:var(--acid);color:var(--ink)}
+.aud-cloud .a.solid{background:var(--ink);color:var(--off-white);border-color:var(--ink)}
+
+/* ============================================================
+   MODELO DE NEGÓCIO — bento
+   ============================================================ */
+.biz-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:clamp(12px,1.4vw,18px);padding-bottom:clamp(40px,4vw,60px)}
+.biz{border:1px solid var(--line-light);border-radius:6px;padding:clamp(22px,2.2vw,30px);background:var(--ink-2);display:flex;flex-direction:column;gap:12px;transition:transform .35s var(--ease),background .35s}
+.biz{transition:transform .35s var(--ease),background .35s,box-shadow .35s var(--ease)}
+.biz:hover{background:var(--ink-soft);transform:translateY(-3px);box-shadow:0 0 0 1px rgba(255,255,255,.12),0 4px 14px rgba(0,0,0,.35)}
+.biz .h{display:flex;align-items:baseline;justify-content:space-between;gap:10px}
+.biz h3{font-size:clamp(19px,2vw,25px);text-transform:uppercase;letter-spacing:-.02em}
+.biz .n{font-family:'Martian Mono',monospace;font-size:11px;color:var(--acid)}
+.biz p{color:#CFC9BC;font-size:14px;line-height:1.45}
+.biz .fig{font-family:'Martian Mono',monospace;font-size:12px;color:var(--acid);margin-top:auto;letter-spacing:.02em}
+.biz.lg{grid-column:span 3}
+.biz.md{grid-column:span 2}
+.biz.sm{grid-column:span 2}
+@media(max-width:860px){.biz.lg,.biz.md,.biz.sm{grid-column:span 3}}
+@media(max-width:560px){.biz.lg,.biz.md,.biz.sm{grid-column:span 6}}
+.biz-note{display:flex;flex-wrap:wrap;gap:10px 26px;padding:22px 0 clamp(60px,8vw,110px);border-top:1px solid var(--line-light)}
+.biz-note div{font-size:13px;color:#CFC9BC}
+.biz-note b{color:var(--acid);font-family:'Martian Mono',monospace;font-weight:600}
+/* tabela de hipótese de receita do piloto */
+.rev{border:1px solid var(--line-light);border-radius:8px;overflow:hidden;margin-top:clamp(24px,3vw,38px)}
+.rev-row{display:flex;justify-content:space-between;gap:16px;align-items:baseline;padding:15px clamp(18px,2.2vw,28px);border-bottom:1px solid var(--line-light)}
+.rev-row:last-child{border-bottom:0}
+.rev-row .l .f{font-weight:700;font-size:15.5px}
+.rev-row .l .h{display:block;color:#CFC9BC;font-size:13px;margin-top:3px}
+.rev-row .v{font-family:'Martian Mono',monospace;font-weight:600;white-space:nowrap;color:var(--off-white);font-variant-numeric:tabular-nums}
+.rev-row.total{background:var(--ink-2)}
+.rev-row.total .l .f{text-transform:uppercase;font-weight:900}
+.rev-row.total .v{color:var(--acid)}
+
+/* ============================================================
+   ATIVAÇÕES — checklist menu
+   ============================================================ */
+.act-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 clamp(28px,4vw,64px);padding-bottom:clamp(60px,8vw,110px)}
+@media(max-width:680px){.act-grid{grid-template-columns:1fr}}
+.act{display:flex;gap:14px;align-items:flex-start;padding:15px 0;border-bottom:1px solid var(--line)}
+.act .tick{width:18px;height:18px;border-radius:3px;background:var(--ink);color:var(--acid);display:grid;place-items:center;font-size:11px;font-weight:900;flex:0 0 auto;margin-top:2px}
+.act .txt{font-weight:600;font-size:16px;letter-spacing:-.01em}
+.act .txt small{display:block;font-weight:400;color:var(--text-2);font-size:13px;letter-spacing:0;margin-top:2px}
+
+/* AFTER RUN — área de consumo */
+.after-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(20px,2.6vw,38px);padding-bottom:clamp(36px,4vw,56px)}
+@media(max-width:780px){.after-cols{grid-template-columns:1fr}}
+.after-col h3{font-size:clamp(19px,2.1vw,25px);text-transform:uppercase;letter-spacing:-.02em;margin-bottom:16px;display:flex;align-items:center;gap:10px}
+.after-col h3::before{content:"";width:10px;height:10px;background:var(--acid);flex:0 0 auto}
+.after-col .items{display:flex;flex-wrap:wrap;gap:8px}
+.after-col .items span{font-size:13.5px;border:1px solid var(--line-strong);border-radius:999px;padding:7px 13px;color:var(--ink-soft);background:rgba(255,255,255,.25)}
+.after-col .items span.x18{background:var(--ink);color:var(--acid);border-color:var(--ink);font-weight:600}
+/* bloco destacado da ativação de cerveja */
+.beer{background:var(--ink);color:var(--off-white);border-radius:10px;padding:clamp(26px,3.4vw,48px);display:grid;grid-template-columns:1fr 1fr;gap:clamp(22px,3vw,44px) clamp(28px,4vw,56px);position:relative;overflow:hidden}
+@media(max-width:760px){.beer{grid-template-columns:1fr}}
+.beer .lead{grid-column:1/-1;display:flex;flex-direction:column;gap:14px}
+.beer .x18-badge{align-self:flex-start;background:var(--acid);color:var(--ink);font-family:'Martian Mono',monospace;font-size:11px;font-weight:600;letter-spacing:.08em;padding:6px 12px;border-radius:2px}
+.beer h3{font-size:clamp(24px,3.2vw,40px);text-transform:uppercase;letter-spacing:-.03em;max-width:20ch}
+.beer .lead p{color:#D7D1C4;font-size:clamp(15px,1.7vw,17px);line-height:1.5;max-width:68ch}
+.beer .col-title{font-family:'Martian Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--acid);margin-bottom:6px}
+.beer ul{list-style:none}
+.beer li{padding:9px 0;border-bottom:1px solid var(--line-light);font-size:14px;color:#D7D1C4;display:flex;gap:10px;align-items:baseline}
+.beer li:last-child{border-bottom:0}
+.beer .pos li::before{content:"+";color:var(--acid);font-weight:900;flex:0 0 auto}
+.beer .care li::before{content:"!";color:#E9B949;font-weight:900;flex:0 0 auto}
+
+/* ============================================================
+   SÃO LUÍS
+   ============================================================ */
+.slz-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(28px,4vw,60px);align-items:center;padding-bottom:clamp(60px,8vw,110px)}
+@media(max-width:820px){.slz-grid{grid-template-columns:1fr}}
+.slz-points{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+.slz-points .p{font-family:'Martian Mono',monospace;font-size:12px;letter-spacing:.02em;border:1px solid var(--line-strong);border-radius:999px;padding:7px 13px;color:var(--ink-soft)}
+
+/* ============================================================
+   ROADMAP
+   ============================================================ */
+.road{padding-bottom:clamp(80px,9.5vw,124px)}
+.road-list{counter-reset:r;border-top:1px solid var(--line)}
+.road-item{display:grid;grid-template-columns:64px 1fr auto;gap:20px;align-items:center;padding:18px 0;border-bottom:1px solid var(--line);transition:padding-left .3s var(--ease)}
+.road-item:hover{padding-left:10px}
+.road-item .rn{counter-increment:r;font-family:'Martian Mono',monospace;font-size:13px;color:var(--acid-ink);font-weight:600}
+.road-item .rn::before{content:counter(r,decimal-leading-zero)}
+.road-item h3{font-size:clamp(18px,2.2vw,26px);text-transform:uppercase;letter-spacing:-.02em}
+.road-item .ph{font-family:'Martian Mono',monospace;font-size:11px;color:var(--warm-gray);text-transform:uppercase;letter-spacing:.04em;white-space:nowrap}
+@media(max-width:640px){.road-item{grid-template-columns:44px 1fr}.road-item .ph{display:none}}
+.val-30{margin:clamp(28px,3vw,40px) 0 0;border:1px solid var(--line);border-radius:8px;background:var(--sand);padding:clamp(24px,3vw,40px);display:grid;grid-template-columns:auto 1fr;gap:clamp(24px,4vw,56px)}
+@media(max-width:680px){.val-30{grid-template-columns:1fr}}
+.val-30 .big{font-weight:900;font-size:clamp(54px,9vw,104px);letter-spacing:-.05em;line-height:.82}
+.val-30 .big small{display:block;font-size:.22em;letter-spacing:.06em;font-family:'Martian Mono',monospace;font-weight:500;color:var(--ink-soft);margin-top:8px}
+.weeks{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+@media(max-width:680px){.weeks{grid-template-columns:1fr 1fr}}
+.week h4{font-family:'Martian Mono',monospace;font-size:11px;color:var(--acid-ink);letter-spacing:.06em;margin-bottom:8px}
+.week p{font-size:13.5px;line-height:1.4;color:var(--ink-soft)}
+
+/* ============================================================
+   PROPOSTA SÓCIO
+   ============================================================ */
+.deal-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,3vw,40px);padding-bottom:clamp(40px,4vw,60px);align-items:start}
+@media(max-width:820px){.deal-grid{grid-template-columns:1fr}}
+.deal-card{border:1px solid var(--line-light);border-radius:8px;padding:clamp(24px,3vw,38px);background:var(--ink-2)}
+.deal-card h3{font-size:clamp(20px,2.4vw,28px);text-transform:uppercase;margin-bottom:18px;letter-spacing:-.02em}
+.role{display:flex;gap:14px;padding:14px 0;border-bottom:1px solid var(--line-light)}
+.role:last-child{border-bottom:0}
+.role .rk{font-family:'Martian Mono',monospace;font-size:11px;color:var(--acid);white-space:nowrap;flex:0 0 96px;letter-spacing:.04em;padding-top:3px}
+.role p{font-size:14.5px;color:#D7D1C4;line-height:1.45}
+.pnl{display:flex;flex-direction:column;gap:0}
+.pnl .pl{display:flex;justify-content:space-between;gap:16px;padding:13px 0;border-bottom:1px solid var(--line-light);font-size:15px}
+.pnl .pl span:first-child{color:#CFC9BC}
+.pnl .pl span:last-child{font-family:'Martian Mono',monospace;font-weight:500;font-variant-numeric:tabular-nums}
+.pnl .pl.total{font-weight:800}
+.pnl .pl.total span:last-child{color:var(--acid)}
+.deal-why{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;padding-bottom:clamp(60px,8vw,100px)}
+@media(max-width:680px){.deal-why{grid-template-columns:1fr 1fr}}
+.why{border:1px solid var(--line-light);border-radius:6px;padding:22px}
+.why .q{font-weight:900;font-size:26px;color:var(--acid);letter-spacing:-.03em}
+.why h4{font-size:15px;text-transform:uppercase;margin:10px 0 6px;letter-spacing:-.01em}
+.why p{font-size:13px;color:#CFC9BC;line-height:1.45}
+
+/* ============================================================
+   FINALE
+   ============================================================ */
+.finale{padding:clamp(80px,12vw,180px) 0 clamp(60px,8vw,110px);text-align:center;position:relative}
+.finale .big{font-weight:900;font-size:clamp(60px,17vw,260px);letter-spacing:-.05em;line-height:.82;text-transform:uppercase}
+.finale .big .pt{color:var(--acid)}
+.finale .sig{font-family:'Martian Mono',monospace;font-size:clamp(12px,1.6vw,16px);letter-spacing:.16em;text-transform:uppercase;color:var(--acid);margin:24px 0 36px}
+.finale .lede{margin:0 auto 40px;color:#D7D1C4;text-align:center}
+.finale-cta{display:inline-flex;flex-direction:column;align-items:center;gap:20px}
+.finale .btn-solid{font-size:16px;padding:18px 30px}
+.foot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;padding:30px 0;border-top:1px solid var(--line-light);margin-top:clamp(60px,8vw,110px);font-family:'Martian Mono',monospace;font-size:11px;letter-spacing:.04em;color:var(--warm-gray-2);text-transform:uppercase}
+.foot a:hover{color:var(--acid)}
+
+/* ---------- reveal (default visível; só anima com JS) ---------- */
+.js .reveal{opacity:0;transform:translateY(26px);filter:blur(8px);transition:opacity .9s var(--ease),transform .9s var(--ease),filter .9s var(--ease)}
+.js .reveal.in{opacity:1;transform:none;filter:blur(0)}
+.js .reveal.d1{transition-delay:.08s}
+.js .reveal.d2{transition-delay:.16s}
+.js .reveal.d3{transition-delay:.24s}
+/* stagger: filhos dos grids entram em sequência */
+.js .stagger>*{opacity:0;transform:translateY(20px);filter:blur(6px);transition:opacity .7s var(--ease),transform .7s var(--ease),filter .7s var(--ease)}
+.js .stagger.in>*{opacity:1;transform:none;filter:blur(0)}
+/* zoom sutil da foto ao passar o mouse no frame */
+.frame-photo{transition:transform .7s var(--ease)}
+.frame:hover .frame-photo{transform:scale(1.045)}
+/* pulse ambiente dos marcadores de seção */
+@keyframes dotPulse{0%,100%{box-shadow:0 0 0 4px rgba(201,242,12,.18)}50%{box-shadow:0 0 0 8px rgba(201,242,12,.04)}}
+.kicker .dot{animation:dotPulse 2.6s ease-in-out infinite}
+/* marquee pausa no hover */
+.marquee:hover .marquee-track{animation-play-state:paused}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;scroll-behavior:auto!important}
+  .js .reveal{opacity:1!important;transform:none!important;transition:none!important}
+  .js .stagger>*{opacity:1!important;transform:none!important;filter:none!important;transition:none!important}
+  .frame-photo{transition:none!important}
+  .frame:hover .frame-photo{transform:none!important}
+  .marquee-track{animation:none!important}
+}
+/* impressão / PDF: remove a textura de grãos (rasteriza pesado) e garante fundos */
+@media print{
+  .grain::after,.frame::after{display:none!important}
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .nav{position:static}
+}
+</style>
+</head>
+<body>
+
+<!-- ============================ NAV ============================ -->
+<nav class="nav" id="nav">
+  <a href="#top" class="nav-logo" aria-label="Corre Goods — início">CORRE&nbsp;GOODS<span class="pt">.</span></a>
+  <div class="nav-links">
+    <a href="#tese">A tese</a>
+    <a href="#oportunidade">Oportunidade</a>
+    <a href="#edicao">Edição 001</a>
+    <a href="#negocio">Negócio</a>
+    <a href="#proposta">Proposta</a>
+    <a href="#proposta" class="nav-cta">A proposta →</a>
+  </div>
+</nav>
+
+<!-- ============================ HERO ============================ -->
+<header class="hero grain" id="top">
+  <div class="wrap">
+    <div class="hero-top">
+      <div class="hero-sig tag" style="letter-spacing:.14em">
+        <span>running</span><span class="slash">/</span><span>music</span><span class="slash">/</span><span>street</span>
+      </div>
+      <div class="tag muted">apresentação confidencial · v.001 · são luís — ma</div>
+    </div>
+
+    <h1 class="hero-word reveal">CORRE<br>GOODS<span class="pt">.</span></h1>
+
+    <div class="hero-grid">
+      <div class="hero-copy reveal d1">
+        <div class="hero-edition">
+          <b>001 — A rua é o ponto</b>
+          <span><span class="hl">Meados de outubro</span> · morning run · São Luís — MA</span>
+        </div>
+        <div class="hero-meta">
+          <span class="chip acid">6KM LEVE</span>
+          <span class="chip">DJ SET EM MOVIMENTO</span>
+          <span class="chip">AFTER RUN 18+</span>
+          <span class="chip">100 PAGANTES</span>
+        </div>
+        <p class="lede">Social run de <strong>6km leve</strong>, com <strong>DJ set em movimento</strong> acompanhando o percurso e <strong>after run</strong> com ativações e venda de produtos. Música eletrônica e street culture na cidade-ilha. Correr junto, ouvir som bom e ficar depois.</p>
+        <div class="hero-actions">
+          <a href="#experiencia" class="btn btn-solid">Ver experiência <span class="arr">→</span></a>
+          <a href="#negocio" class="btn btn-ghost">Plano do piloto <span class="arr">→</span></a>
+        </div>
+      </div>
+
+      <div class="hero-stack reveal d2">
+        <div class="frame ar-hero">
+          <img class="frame-photo" src="assets/cg-hero-orla.jpg" alt="Grupo correndo na orla da Litorânea ao amanhecer, bandeira CORRE GOODS, primeira luz da manhã" loading="lazy" onload="this.closest('.frame').classList.add('has-photo')" onerror="this.remove()" />
+          <span class="frame-tag">Imagem real CG</span>
+          <div class="frame-cap">
+            <div class="label">
+              <span class="t">Largada na orla ao amanhecer</span>
+              <span class="s">crowd running · Av. Litorânea · primeira luz</span>
+            </div>
+            <span class="ratio">16:13</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- marquee -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <span>RUNNING<span class="sep">/</span>MUSIC<span class="sep">/</span>STREET<span class="sep">●</span>A RUA É O PONTO<span class="sep">●</span>MORNING RUN<span class="sep">/</span>DJ SET EM MOVIMENTO<span class="sep">/</span>AFTER RUN<span class="sep">●</span></span>
+      <span>RUNNING<span class="sep">/</span>MUSIC<span class="sep">/</span>STREET<span class="sep">●</span>A RUA É O PONTO<span class="sep">●</span>MORNING RUN<span class="sep">/</span>DJ SET EM MOVIMENTO<span class="sep">/</span>AFTER RUN<span class="sep">●</span></span>
+    </div>
+  </div>
+</header>
+
+<!-- ============================ 1 · TESE ============================ -->
+<section id="tese" class="grain">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker tag"><span class="dot"></span> <span class="idx">01</span> &nbsp;A tese</div>
+      <div class="tag muted">corrida, som e rua</div>
+    </div>
+    <div class="tese-grid">
+      <div class="reveal">
+        <h2 class="tese-title">Corrida,<br>som e<br><em>rua.</em></h2>
+        <p class="lede" style="margin-top:24px">CORRE GOODS é uma experiência de <strong>social run</strong> que mistura <strong>6km de corrida leve</strong>, <strong>música eletrônica durante o percurso</strong> e <strong>after run</strong> com collabs, ativações e venda de produtos. A proposta é simples: correr junto, ouvir som bom e ficar depois.</p>
+      </div>
+      <div class="reveal d1">
+        <div class="equation">
+          <div class="eq-row"><span class="k">A corrida<span class="pt">.</span></span><span class="v">cria o encontro. Pace livre, sem cronômetro, foco em estar junto.</span></div>
+          <div class="eq-row"><span class="k">A música<span class="pt">.</span></span><span class="v">eletrônica em movimento, acompanha o corre do início ao after. House, afro, organic, grooves solares.</span></div>
+          <div class="eq-row"><span class="k">A estética<span class="pt">.</span></span><span class="v">cria o desejo. Off-white, streetwear, conteúdo de feed.</span></div>
+          <div class="eq-row"><span class="k">O after<span class="pt">.</span></span><span class="v">monetiza. Venda de produtos, ativações e collabs. A chegada é só o começo.</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ 2 · OPORTUNIDADE ============================ -->
+<section id="oportunidade" class="dark grain">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker tag"><span class="dot"></span> <span class="idx">02</span> &nbsp;A oportunidade</div>
+      <div class="tag muted">a janela é agora</div>
+    </div>
+    <div class="opp-intro">
+      <h2 class="reveal" style="font-size:clamp(30px,4.6vw,62px);text-transform:uppercase">A corrida virou social. A música deixa memorável. A estética cria desejo.</h2>
+      <p class="lede reveal d1">O formato corrida + eletrônica + after já é fenômeno comprovado e lucrativo lá fora e em São Paulo. Em São Luís, ninguém fez ainda — e a cidade tem os ativos perfeitos: orla de 7km, calor social, luz da manhã e cena criativa jovem.</p>
+    </div>
+
+    <div class="ledger reveal">
+      <div class="cell"><div class="num">R$ 1,1<span class="pt">bi</span></div><div class="desc">Mercado de corrida de rua no Brasil em 2025.<span class="src">Fonte: ABRACEO / CBAt</span></div></div>
+      <div class="cell"><div class="num">+85<span class="pt">%</span></div><div class="desc">Salto de provas oficiais: 2.827 (2024) → 5.241 (2025).<span class="src">Fonte: ABRACEO</span></div></div>
+      <div class="cell"><div class="num">+800<span class="pt">%</span></div><div class="desc">Crescimento de novos run clubs no Brasil — o país mais social do Strava.<span class="src">Fonte: Strava Year in Sport 2025</span></div></div>
+      <div class="cell"><div class="num">22,3<span class="pt">%</span></div><div class="desc">Participação do Nordeste nas inscrições nacionais — 2ª região do país.<span class="src">Fonte: CBAt 2024</span></div></div>
+      <div class="cell"><div class="num">100<span class="pt">mil</span></div><div class="desc">Ingressos vendidos pelo Diplo's Run Club em 10 eventos desde 2024.<span class="src">Fonte: Billboard, jan/2026</span></div></div>
+      <div class="cell"><div class="num">0<span class="pt"></span></div><div class="desc">Concorrentes diretos do formato em São Luís. Território livre para ser o primeiro.<span class="src">Análise CORRE GOODS</span></div></div>
+    </div>
+
+    <div class="frame acid-frame ar-ultra has-photo reveal" style="margin-top:clamp(32px,4vw,52px)">
+      <img class="frame-photo" src="assets/cg-som-movel.jpg" alt="Carro de som da CORRE GOODS com DJ guiando o pelotão de corredores pela orla" loading="lazy" onerror="this.closest('.frame').classList.remove('has-photo')" />
+      <div class="frame-cap"><div class="label"><span class="t">DJ guiando o corre na orla</span><span class="s">o formato já é provado — Pacetronik · Diplo · Run &amp; Bass</span></div><span class="ratio">CORRE GOODS 001</span></div>
+    </div>
+    <p class="lede reveal" style="margin-top:clamp(32px,4vw,52px);padding-bottom:clamp(60px,8vw,110px)">
+      Benchmarks que validam a tese: <strong>Diplo's Run Club</strong> (EUA, US$65–200), <strong>Run &amp; Bass</strong> e <strong>Pacetronik</strong> (SP, R$40–55, com ASICS e Red Bull no portfólio), <strong>running raves</strong> e os <strong>sunset runs do Nordeste</strong>. Todos provam o mesmo: o <em style="color:var(--acid);font-style:normal">after é o produto</em>.
+    </p>
+  </div>
+</section>
+
+<!-- ============================ 3 · EXPERIÊNCIA ============================ -->
+<section id="experiencia" class="grain">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker tag"><span class="dot"></span> <span class="idx">03</span> &nbsp;Como funciona</div>
+      <div class="tag muted">da largada ao after</div>
+    </div>
+    <div class="frame ar-wide has-photo reveal" style="margin-bottom:clamp(28px,3.5vw,48px)">
+      <img class="frame-photo" src="assets/cg-checkin.jpg" alt="Check-in da CORRE GOODS na orla: estande, entrega de pulseira e produtos da edição" loading="lazy" onerror="this.closest('.frame').classList.remove('has-photo')" />
+      <div class="frame-cap"><div class="label"><span class="t">Check-in &amp; estande na orla</span><span class="s">pulseira, kit e ponto de encontro</span></div><span class="ratio">da largada ao after</span></div>
+    </div>
+    <div class="steps stagger">
+      <div class="step"><div class="head"><span class="n">01 / Check-in</span><span class="ic">+</span></div><div><h3>Check-in</h3><p>Lista, pulseira da edição e ponto de encontro. Kit e photo point logo na entrada, ainda no escuro da manhã.</p></div></div>
+      <div class="step"><div class="head"><span class="n">02 / Corre</span><span class="ic">→</span></div><div><h3>6km leve</h3><p>Percurso acessível na orla, sem clima de prova. Sem cronômetro, sem pódio. O foco é estar junto.</p></div></div>
+      <div class="step"><div class="head"><span class="n">03 / Som</span><span class="ic">♪</span></div><div><h3>DJ set em movimento</h3><p>O som acompanha a corrida durante todo o trajeto. A trilha não fica no ponto de chegada — ela vai junto.</p></div></div>
+      <div class="step"><div class="head"><span class="n">04 / After</span><span class="ic">●</span></div><div><h3>After run</h3><p>Pós-corrida com música, social e consumo: bebidas, comida leve e produtos da edição. A parte que monetiza.</p></div></div>
+      <div class="step"><div class="head"><span class="n">05 / Marcas</span><span class="ic">✕</span></div><div><h3>Ativações</h3><p>Marcas entram com experiência, produto e conteúdo — incluindo um after run 18+ com marca parceira.</p></div></div>
+      <div class="step"><div class="head"><span class="n">06 / Feed</span><span class="ic">▢</span></div><div><h3>Conteúdo</h3><p>Fotos, reels, aftermovie e collabs. O conteúdo dos participantes é o motor da próxima edição.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ 4 · EDIÇÃO 001 ============================ -->
+<section id="edicao" class="dark grain">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker tag"><span class="dot"></span> <span class="idx">04</span> &nbsp;Primeira edição</div>
+      <div class="tag muted">edição piloto</div>
+    </div>
+    <div class="ed-grid">
+      <div class="ed-poster reveal">
+        <span class="badge">CORRE GOODS · 001</span>
+        <div>
+          <div class="ed-num">0<span class="pt">0</span>1</div>
+          <h3>A rua é o ponto</h3>
+          <div class="sub">social run · são luís — ma</div>
+        </div>
+        <ul class="ed-spec">
+          <li>Meados de outubro</li>
+          <li>100 pagantes em média</li>
+          <li>6km leve · morning run</li>
+          <li>DJ set durante o percurso</li>
+          <li>After run com venda</li>
+          <li>Ativação cerveja ultra 18+</li>
+          <li>Conteúdo audiovisual</li>
+          <li>Collabs locais · off-white</li>
+        </ul>
+      </div>
+      <div class="ed-copy reveal d1">
+        <h3>Um piloto enxuto e validável.</h3>
+        <p class="lede">A primeira edição roda em formato piloto: <strong>100 pagantes em média, em meados de outubro</strong>. 6km leve de manhã, DJ set acompanhando o percurso e after run que vende bebida, comida leve e produtos da marca. Barato de testar, forte de mostrar.</p>
+        <div class="frame dark-frame ar-wide" style="margin-top:8px">
+          <img class="frame-photo" src="assets/cg-dj-movimento.jpg" alt="DJ no carro de som CORRE GOODS acompanhando o grupo durante o percurso de 6km" loading="lazy" onload="this.closest('.frame').classList.add('has-photo')" onerror="this.remove()" />
+          <span class="frame-tag">Imagem real CG</span>
+          <div class="frame-cap">
+            <div class="label"><span class="t">DJ set em movimento no percurso</span><span class="s">som móvel acompanha o corre · manhã</span></div>
+            <span class="ratio">16:9</span>
+          </div>
+        </div>
+        <div class="hero-meta" style="margin-top:18px">
+          <span class="chip acid">100 pagantes</span>
+          <span class="chip" style="color:#CFC9BC;border-color:var(--line-light)">Ingresso ~R$ 49</span>
+          <span class="chip" style="color:#CFC9BC;border-color:var(--line-light)">Sem cronometragem</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- fluxo do dia -->
+    <div class="reveal sec-end">
+      <div class="tag muted" style="margin-bottom:14px">Operação do dia · sábado ou domingo de manhã</div>
+      <div class="dayflow">
+        <div class="d"><div class="t">5h30–6h</div><div class="l">Check-in, kit e pulseira da edição.</div></div>
+        <div class="d"><div class="t">6h15</div><div class="l">Warm-up leve com som.</div></div>
+        <div class="d"><div class="t">6h30</div><div class="l">Largada dos 6km.</div></div>
+        <div class="d"><div class="t">6h30–7h30</div><div class="l">Percurso com DJ set em movimento.</div></div>
+        <div class="d"><div class="t">7h30–9h30</div><div class="l">After run: venda, ativações e collabs.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ 5 · VISUAL DA MARCA ============================ -->
+<section id="marca" class="grain">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker tag"><span class="dot"></span> <span class="idx">05</span> &nbsp;Visual da marca</div>
+      <div class="tag muted">streetwear running</div>
+    </div>
+    <div class="opp-intro" style="padding-bottom:clamp(28px,3vw,44px)">
+      <h2 class="reveal" style="font-size:clamp(30px,4.6vw,62px);text-transform:uppercase">Streetwear running.</h2>
+      <p class="lede reveal d1">A identidade do CORRE GOODS foi pensada para funcionar no corpo, na rua e no feed. A marca precisa ser reconhecida tanto numa camiseta quanto num story — off-white dominante, preto suave e o detalhe verde-ácido.</p>
+    </div>
+
+    <div class="brand-board reveal">
+      <img src="assets/brand-board.jpg" alt="Board de identidade visual do CORRE GOODS: marca principal, monograma CG, paleta off-white / areia / preto / verde-ácido, tipografia, aplicações em camiseta, boné e credencial, mockup de redes sociais e bandeira" loading="lazy" />
+    </div>
+
+    <div class="frame ar-wide has-photo reveal" style="margin-bottom:clamp(14px,1.6vw,22px)">
+      <img class="frame-photo" src="assets/cg-merch-kit.jpg" alt="Flat-lay do kit CORRE GOODS 001: camiseta off-white, boné, squeeze, fones e cartão da rota de 6km" loading="lazy" onerror="this.closest('.frame').classList.remove('has-photo')" />
+      <div class="frame-cap"><div class="label"><span class="t">Kit &amp; merch da edição 001</span><span class="s">funciona no corpo, na rua e no feed</span></div><span class="ratio">off-white · CG</span></div>
+    </div>
+    <div class="brand-grid">
+      <div class="bg-card bg-logo reveal">
+        <img src="assets/wordmark-stacked.png" alt="Wordmark CORRE GOODS empilhado, off-white com ponto verde-ácido" loading="lazy" style="background:var(--off-white)" />
+        <span class="cap">01 · Marca principal</span>
+      </div>
+      <div class="bg-card bg-mono reveal d1">
+        <img src="assets/monogram.png" alt="Monograma C-G do CORRE GOODS com detalhe verde-ácido" loading="lazy" />
+        <span class="cap">02 · Monograma / ícone</span>
+      </div>
+      <div class="bg-card bg-pal reveal d2">
+        <div class="swatches">
+          <div class="sw" style="background:#ECE7DD"><span>OFF-WHITE</span></div>
+          <div class="sw" style="background:#E1D4BF"><span>AREIA</span></div>
+          <div class="sw" style="background:#15130E;color:#ECE7DD"><span>PRETO</span></div>
+          <div class="sw" style="background:#6E6A60;color:#ECE7DD"><span>CINZA</span></div>
+          <div class="sw" style="background:#C9F20C"><span>ÁCIDO</span></div>
+        </div>
+        <span class="cap">03 · Paleta</span>
+      </div>
+      <div class="bg-card bg-type reveal">
+        <div class="type-spec">
+          <div class="row"><span class="big">CORRE GOODS</span><span class="meta">Display · grotesca pesada</span></div>
+          <div class="row"><span class="big" style="font-weight:500;font-size:clamp(20px,3vw,30px)">running / music / street</span><span class="meta">Assinatura · regular</span></div>
+          <div class="row"><span class="mono" style="font-size:clamp(14px,2vw,20px)">CG—001 · A RUA É O PONTO</span><span class="meta">Mono · credencial / tag</span></div>
+        </div>
+        <span class="cap">04 · Tipografia</span>
+      </div>
+      <div class="bg-card bg-apps reveal d1">
+        <div class="hero-meta">
+          <span class="chip">Camiseta 001</span><span class="chip">Boné</span><span class="chip">Pulseira</span>
+          <span class="chip">Flyer</span><span class="chip">Adesivos</span><span class="chip acid">Bandeira</span>
+          <span class="chip">Credencial</span><span class="chip">Redes sociais</span>
+        </div>
+        <span class="cap">05 · Aplicações &amp; merch</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ 6 · PÚBLICO ============================ -->
+<section id="publico" class="sand grain">
+  <div class="wrap aud-wrap">
+    <div class="section-head">
+      <div class="kicker tag"><span class="dot"></span> <span class="idx">06</span> &nbsp;Para quem é</div>
+      <div class="tag muted">20–40 · lifestyle · cidade</div>
+    </div>
+    <p class="lede reveal" style="margin-bottom:30px">Gente que gosta de movimento, música, estilo, cidade, praia, conteúdo e bons encontros. Quem quer um rolê saudável <strong>e</strong> visual.</p>
+    <div class="frame ar-wide has-photo reveal" style="margin:clamp(8px,1.4vw,18px) 0 clamp(28px,3.5vw,48px)">
+      <img class="frame-photo" src="assets/cg-publico.jpg" alt="Corredores sorrindo em camisetas CORRE GOODS na orla ensolarada, placa 001 ao fundo" loading="lazy" onerror="this.closest('.frame').classList.remove('has-photo')" />
+      <div class="frame-cap"><div class="label"><span class="t">Movimento, música, estilo e bons encontros</span><span class="s">20–40 · rolê saudável e visual</span></div><span class="ratio">para quem é</span></div>
+    </div>
+    <div class="aud-cloud stagger">
+      <span class="a solid">Corredores iniciantes</span>
+      <span class="a">Intermediários</span>
+      <span class="a acid">Público de academia</span>
+      <span class="a">Funcional</span>
+      <span class="a">Beach tennis</span>
+      <span class="a">Muay thai</span>
+      <span class="a">Cross training</span>
+      <span class="a solid">Criativos</span>
+      <span class="a">Empreendedores</span>
+      <span class="a">Universitários</span>
+      <span class="a">Profissionais liberais</span>
+      <span class="a acid">Música eletrônica &amp; DJ</span>
+      <span class="a">Social &amp; lifestyle</span>
+      <span class="a solid">20–40 anos</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ 7 · MODELO DE NEGÓCIO ============================ -->
+<section id="negocio" class="dark grain">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker tag"><span class="dot"></span> <span class="idx">07</span> &nbsp;Como o piloto monetiza</div>
+      <div class="tag muted">quatro frentes de receita</div>
+    </div>
+    <div class="biz-grid stagger">
+      <div class="biz lg"><div class="h"><h3>Ingresso</h3><span class="n">01</span></div><p>100 pagantes em média a ~R$ 49. Lotes limitados criam escassez e antecipam caixa antes do evento.</p><span class="fig">≈ R$ 4.900</span></div>
+      <div class="biz lg"><div class="h"><h3>After run</h3><span class="n">02</span></div><p>Venda de bebidas, comidas leves e produtos no pós-corrida. A chegada vira área de consumo e social.</p><span class="fig">ticket médio ≈ R$ 25</span></div>
+      <div class="biz lg"><div class="h"><h3>Ativação de marca</h3><span class="n">03</span></div><p>Cerveja ultra 18+, café, água, recovery, moda ou lifestyle. Cota vendida por projeção e território.</p><span class="fig">R$ 1.500–5.000</span></div>
+      <div class="biz lg"><div class="h"><h3>Merch</h3><span class="n">04</span></div><p>Camiseta off-white 001, boné e itens da edição. Drop limitado que vira pertencimento.</p><span class="fig">lucro ≈ R$ 40/peça</span></div>
+    </div>
+
+    <div class="reveal sec-end">
+      <div class="tag muted" style="margin:clamp(28px,3vw,40px) 0 0">Hipótese de receita do piloto · 100 pagantes</div>
+      <div class="rev">
+        <div class="rev-row"><span class="l"><span class="f">Ingresso</span><span class="h">100 pessoas × R$ 49</span></span><span class="v">R$ 4.900</span></div>
+        <div class="rev-row"><span class="l"><span class="f">After run</span><span class="h">ticket médio R$ 25 × 70 pessoas</span></span><span class="v">R$ 1.750</span></div>
+        <div class="rev-row"><span class="l"><span class="f">Patrocínio local</span><span class="h">1 marca apoiadora</span></span><span class="v">R$ 1.500–5.000</span></div>
+        <div class="rev-row"><span class="l"><span class="f">Merch opcional</span><span class="h">30 peças × lucro R$ 40</span></span><span class="v">R$ 1.200</span></div>
+        <div class="rev-row total"><span class="l"><span class="f">Potencial bruto</span></span><span class="v">R$ 7.850–12.850</span></div>
+      </div>
+      <p class="muted" style="font-size:12.5px;margin-top:14px;max-width:70ch">Hipótese inicial, não promessa. Mas já mostra que o 001 deixa de ser "ideia legal" e vira um produto validável. <strong style="color:var(--acid)">E depois escala:</strong> membership, edições corporativas, branded content e collabs recorrentes.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ 8 · AFTER RUN ============================ -->
+<section id="afterrun" class="sand grain sec-end">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker tag"><span class="dot"></span> <span class="idx">08</span> &nbsp;O after run</div>
+      <div class="tag muted">corrida primeiro, after depois</div>
+    </div>
+    <div class="opp-intro" style="padding-bottom:clamp(28px,3vw,44px)">
+      <h2 class="reveal" style="font-size:clamp(30px,4.6vw,62px);text-transform:uppercase">A chegada vira área de consumo.</h2>
+      <p class="lede reveal d1">O after run é onde o piloto monetiza. A linha de chegada vira uma pequena área de consumo e socialização: bebidas, comida leve, produtos da marca e ativações — tudo de manhã, leve e saudável.</p>
+    </div>
+    <div class="frame ar-wide has-photo reveal" style="margin-bottom:clamp(28px,3.5vw,48px)">
+      <img class="frame-photo" src="assets/cg-after-run.jpg" alt="After run da CORRE GOODS: estande com bebidas, sinalização 18+, produtos 001 e galera socializando" loading="lazy" onerror="this.closest('.frame').classList.remove('has-photo')" />
+      <div class="frame-cap"><div class="label"><span class="t">A chegada vira área de consumo</span><span class="s">bebidas, comida leve, produtos e ativações</span></div><span class="ratio">after run 18+</span></div>
+    </div>
+    <div class="after-cols stagger">
+      <div class="after-col">
+        <h3>Bebidas</h3>
+        <div class="items">
+          <span>Água</span><span>Água de coco</span><span>Café gelado</span><span>Isotônico</span>
+          <span>Drink sem álcool</span><span>Refri zero</span><span>Energético</span><span class="x18">Cerveja ultra 18+</span>
+        </div>
+      </div>
+      <div class="after-col">
+        <h3>Comida leve</h3>
+        <div class="items">
+          <span>Sanduíche natural</span><span>Wrap</span><span>Frutas</span><span>Açaí pequeno</span><span>Pão de queijo</span>
+          <span>Tapioca</span><span>Bowl</span><span>Snack proteico</span><span>Banana bread</span><span>Cafeteria</span>
+        </div>
+      </div>
+      <div class="after-col">
+        <h3>Produtos CORRE GOODS</h3>
+        <div class="items">
+          <span>Camiseta 001</span><span>Boné</span><span>Meia</span><span>Adesivo</span><span>Garrafa</span>
+          <span>Shoulder bag</span><span>Pulseira</span><span>Ecobag</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="beer reveal">
+      <div class="lead">
+        <span class="x18-badge">After run 18+</span>
+        <h3>After run 18+ com marca parceira</h3>
+        <p>A ativação com uma marca de cerveja ultra entra <strong>só no after run</strong>, como experiência de consumo adulto, leve e alinhada ao lifestyle do projeto: ponto de venda, ambientação, sampling controlado, conteúdo e presença no material da edição. <strong>Corrida primeiro, after depois</strong> — água e opções sem álcool sempre em destaque.</p>
+      </div>
+      <div>
+        <div class="col-title">Ativações possíveis</div>
+        <ul class="pos">
+          <li>Cooler e balcão personalizados</li>
+          <li>Combo pós-corre + copo da marca</li>
+          <li>Backdrop e foto com produto</li>
+          <li>Collab post + cupom</li>
+          <li>Lote patrocinado + venda no after</li>
+          <li>Brinde para maiores de 18 anos</li>
+        </ul>
+      </div>
+      <div>
+        <div class="col-title">Cuidados inegociáveis</div>
+        <ul class="care">
+          <li>Apenas no after run, nunca antes ou durante o corre</li>
+          <li>Controle de idade 18+</li>
+          <li>Comunicação responsável, sem incentivo a excesso</li>
+          <li>Não associar álcool à performance</li>
+          <li>Água e opções sem álcool em destaque</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ 9 · ATIVAÇÕES ============================ -->
+<section id="ativacoes" class="grain">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker tag"><span class="dot"></span> <span class="idx">09</span> &nbsp;Ativações que criam marca</div>
+      <div class="tag muted">o rolê vira conteúdo</div>
+    </div>
+    <div class="frame ar-wide has-photo reveal" style="margin-bottom:clamp(28px,3.5vw,48px)">
+      <img class="frame-photo" src="assets/cg-carro-dj.jpg" alt="Carro de apoio CORRE GOODS com DJ e som móvel conduzindo o pelotão — assinatura do formato" loading="lazy" onerror="this.closest('.frame').classList.remove('has-photo')" />
+      <div class="frame-cap"><div class="label"><span class="t">Som móvel · carro com DJ</span><span class="s">a assinatura que viraliza</span></div><span class="ratio">ativação 001</span></div>
+    </div>
+    <div class="act-grid stagger">
+      <div class="act"><span class="tick">✓</span><span class="txt">Carro / bike de apoio com DJ <small>som móvel que viraliza — assinatura do formato</small></span></div>
+      <div class="act"><span class="tick">✓</span><span class="txt">DJ set em movimento no percurso <small>som acompanha o corre do início ao after</small></span></div>
+      <div class="act"><span class="tick">✓</span><span class="txt">Pulseira da edição + camiseta off-white 001 <small>merch como pertencimento</small></span></div>
+      <div class="act"><span class="tick">✓</span><span class="txt">QR code para a playlist oficial <small>CG Sounds — grooves solares da manhã</small></span></div>
+      <div class="act"><span class="tick">✓</span><span class="txt">Mapa da rota + faixa "A rua é o ponto" <small>território de marca na orla</small></span></div>
+      <div class="act"><span class="tick">✓</span><span class="txt">Café gelado, água de coco, bebida sem álcool <small>hidratação patrocinável</small></span></div>
+      <div class="act"><span class="tick">✓</span><span class="txt">Recovery spot — gelo, fisio <small>collab com clínica / studio</small></span></div>
+      <div class="act"><span class="tick">✓</span><span class="txt">Photo point &amp; photo wall <small>conteúdo gerado pelos participantes</small></span></div>
+      <div class="act"><span class="tick">✓</span><span class="txt">Vídeo recap em 24h <small>aquisição da próxima edição</small></span></div>
+      <div class="act"><span class="tick">✓</span><span class="txt">Collabs: cafeteria · beach club · streetwear <small>parceiros-âncora locais</small></span></div>
+      <div class="act"><span class="tick">✓</span><span class="txt">Collab academia / box + marca de bebida <small>aquecimento e after</small></span></div>
+      <div class="act"><span class="tick">✓</span><span class="txt">After run com DJ set + playlist oficial <small>a chegada é só o começo</small></span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ 9 · SÃO LUÍS ============================ -->
+<section id="saoluis" class="dark grain">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker tag"><span class="dot"></span> <span class="idx">10</span> &nbsp;Por que São Luís</div>
+      <div class="tag muted">cidade-ilha · cenário</div>
+    </div>
+    <div class="slz-grid">
+      <div class="reveal">
+        <h2 style="font-size:clamp(34px,5.5vw,76px);text-transform:uppercase">São Luís<br>como<br><span style="color:var(--acid)">cenário.</span></h2>
+        <p class="lede" style="margin-top:22px">A cidade-ilha tem orla, praia, mar, calor social, música, vida ao ar livre e pontos visuais fortes. De manhã, a Litorânea entrega a primeira luz, o ar mais fresco e a melhor janela para correr. CORRE GOODS usa esse contexto como cenário para uma experiência contemporânea de social run com música eletrônica e street culture.</p>
+        <div class="slz-points">
+          <span class="p" style="color:#CFC9BC;border-color:var(--line-light)">Litorânea · 7km de orla</span>
+          <span class="p" style="color:#CFC9BC;border-color:var(--line-light)">Nascer do sol</span>
+          <span class="p" style="color:#CFC9BC;border-color:var(--line-light)">Manhã mais fresca</span>
+          <span class="p" style="color:#CFC9BC;border-color:var(--line-light)">Calor social</span>
+          <span class="p" style="color:#CFC9BC;border-color:var(--line-light)">Cena criativa jovem</span>
+          <span class="p" style="background:var(--acid);color:var(--ink);border-color:var(--acid)">Trilha 100% eletrônica</span>
+        </div>
+        <p class="muted" style="margin-top:22px;font-size:13.5px;max-width:54ch">A cidade tem forte cultura de reggae, que respeitamos — mas <strong style="color:#fff">não é</strong> o território do CORRE GOODS. O som aqui é eletrônico: house, afro house, organic, melodic, disco house e grooves solares.</p>
+      </div>
+      <div class="reveal d1">
+        <div class="frame acid-frame ar-tall">
+          <img class="frame-photo" src="assets/cg-saoluis.jpg" alt="Evento CORRE GOODS 001 na orla de São Luís, estande, DJ e público ao amanhecer" loading="lazy" onload="this.closest('.frame').classList.add('has-photo')" onerror="this.remove()" />
+          <span class="frame-tag">Imagem real CG</span>
+          <div class="frame-cap">
+            <div class="label"><span class="t">Orla da Litorânea ao amanhecer</span><span class="s">são luís — ma · primeira luz · lifestyle</span></div>
+            <span class="ratio">3:4</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ 10 · PLANO DE LANÇAMENTO ============================ -->
+<section id="plano" class="grain">
+  <div class="wrap road">
+    <div class="section-head">
+      <div class="kicker tag"><span class="dot"></span> <span class="idx">11</span> &nbsp;Do conceito ao piloto</div>
+      <div class="tag muted">plano de lançamento</div>
+    </div>
+    <div class="road-list stagger">
+      <div class="road-item"><span class="rn"></span><h3>Finalizar identidade</h3><span class="ph">Fase · marca</span></div>
+      <div class="road-item"><span class="rn"></span><h3>Definir rota de 6km na orla</h3><span class="ph">Fase · operação</span></div>
+      <div class="road-item"><span class="rn"></span><h3>Fechar DJ e carro de som · DJ em movimento</h3><span class="ph">Fase · som</span></div>
+      <div class="road-item"><span class="rn"></span><h3>Fechar parceiros, collabs e ativação 18+</h3><span class="ph">Fase · comercial</span></div>
+      <div class="road-item"><span class="rn"></span><h3>Criar lista de interessados</h3><span class="ph">Fase · comunidade</span></div>
+      <div class="road-item"><span class="rn"></span><h3>Produzir conteúdo teaser</h3><span class="ph">Fase · conteúdo</span></div>
+      <div class="road-item"><span class="rn"></span><h3>Rodar o piloto · ~100 pagantes em outubro</h3><span class="ph">Fase · evento 001</span></div>
+      <div class="road-item"><span class="rn"></span><h3>Medir adesão, conteúdo e potencial comercial</h3><span class="ph">Fase · dados</span></div>
+      <div class="road-item"><span class="rn"></span><h3>Ajustar formato</h3><span class="ph">Fase · iteração</span></div>
+      <div class="road-item"><span class="rn"></span><h3>Escalar edições recorrentes</h3><span class="ph">Fase · escala</span></div>
+    </div>
+
+    <div class="val-30 reveal">
+      <div class="big">OUT<small>PILOTO 001 · MEADOS DE OUTUBRO</small></div>
+      <div class="weeks">
+        <div class="week"><h4>JUN–JUL</h4><p>Identidade, rota de 6km na orla, DJ e carro de som, primeiros parceiros-âncora.</p></div>
+        <div class="week"><h4>AGOSTO</h4><p>Abrir Instagram/TikTok, teaser, lista de espera e treininhos sociais grátis.</p></div>
+        <div class="week"><h4>SETEMBRO</h4><p>Fechar cotas e ativação 18+, definir local do after, abrir 1º lote limitado.</p></div>
+        <div class="week"><h4>OUTUBRO</h4><p>Rodar o 001 com ~100 pagantes. Capturar conteúdo, medir CAC e NPS.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ 11 · PROPOSTA AO SÓCIO ============================ -->
+<section id="proposta" class="dark grain">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker tag"><span class="dot"></span> <span class="idx">12</span> &nbsp;A proposta</div>
+      <div class="tag muted">somar para validar</div>
+    </div>
+    <div class="opp-intro" style="padding-bottom:clamp(28px,3vw,44px)">
+      <h2 class="reveal" style="font-size:clamp(30px,4.6vw,62px);text-transform:uppercase">Validar um piloto de 100 pagantes em outubro.</h2>
+      <p class="lede reveal d1">A conversa mudou: não é "vamos criar uma marca/evento", é "<strong>vamos validar um produto de experiência</strong> com receita de ingresso, after run, ativação de marca e merch — e potencial de recorrência". Barato de testar, dados de verdade, escala por edição.</p>
+    </div>
+
+    <div class="deal-grid">
+      <div class="deal-card reveal">
+        <h3>O que somamos juntos</h3>
+        <div class="role"><span class="rk">MARCA +<br>CONCEITO</span><p>Identidade, curadoria musical, conteúdo e direção criativa. O território e a estética do projeto.</p></div>
+        <div class="role"><span class="rk">CAPITAL +<br>REDE</span><p>Investimento inicial, rede de parceiros e patrocínio, visão de negócio. O que destrava operação e comercial.</p></div>
+        <div class="role"><span class="rk">OPERAÇÃO +<br>EXECUÇÃO</span><p>Produção do dia, captação de cotas, collabs locais, o 001 no chão e o plano de escala das próximas edições.</p></div>
+        <p class="muted" style="font-size:12.5px;margin-top:6px">Não é divisão "um lado ou o outro" — são os dois somando para tirar a 001 do papel.</p>
+      </div>
+      <div class="deal-card reveal d1">
+        <h3>P&amp;L exemplo · piloto 001</h3>
+        <div class="pnl">
+          <div class="pl"><span>Ingresso · 100 × R$ 49</span><span>+ R$ 4.900</span></div>
+          <div class="pl"><span>After run · venda</span><span>+ R$ 1.750</span></div>
+          <div class="pl"><span>Patrocínio / ativação de marca</span><span>+ R$ 1.500–5.000</span></div>
+          <div class="pl"><span>Merch · 30 peças</span><span>+ R$ 1.200</span></div>
+          <div class="pl"><span>DJ + som / PA + técnico</span><span>– R$ 1.750–3.950</span></div>
+          <div class="pl"><span>Produção, conteúdo &amp; permits*</span><span>– a definir</span></div>
+          <div class="pl total"><span>Potencial bruto do piloto</span><span>R$ 7.850–12.850</span></div>
+        </div>
+        <p class="muted" style="font-size:12px;margin-top:14px">*Hipótese inicial, não promessa. Sem cronometragem e em área de menor interdição, o custo cai. Números a validar localmente.</p>
+      </div>
+    </div>
+
+    <div class="deal-why" style="margin-top:clamp(24px,3vw,40px)">
+      <div class="why reveal"><div class="q">?</div><h4>O que é</h4><p>Social run de 6km + DJ em movimento + after run monetizado. Lifestyle, não corrida institucional.</p></div>
+      <div class="why reveal d1"><div class="q">!</div><h4>Por que agora</h4><p>Mercado em alta, formato validado, nenhum concorrente direto em SLZ.</p></div>
+      <div class="why reveal d2"><div class="q">→</div><h4>Por que aqui</h4><p>Orla, manhã fresca e calor social. A cidade entrega o cenário perfeito.</p></div>
+      <div class="why reveal d3"><div class="q">●</div><h4>Próximo passo</h4><p>Fechar o investimento do 001 e rodar o piloto em meados de outubro.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ 12 · FINALE ============================ -->
+<section class="dark grain finale" id="contato">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="big">A RUA<br>É O <span class="pt">PONTO.</span></div>
+      <div class="sig">corre goods · running / music / street</div>
+      <p class="lede">Uma marca para correr, ouvir, vestir, postar e repetir. A chegada é só o começo.</p>
+      <div class="finale-cta">
+        <a href="mailto:wesleycarvalho.coach@gmail.com?subject=CORRE%20GOODS%20001%20—%20vamos%20tirar%20do%20papel" class="btn btn-solid">Vamos tirar a edição 001 do papel <span class="arr">→</span></a>
+        <span class="tag muted">corre leve, fica pro som</span>
+      </div>
+    </div>
+    <div class="foot">
+      <span>© CORRE GOODS · 001 — A RUA É O PONTO</span>
+      <span>SÃO LUÍS — MA · SOCIAL RUN</span>
+      <a href="mailto:wesleycarvalho.coach@gmail.com">CONTATO →</a>
+    </div>
+  </div>
+</section>
+
+<script>
+/* progressive enhancement: tudo é visível sem JS; JS só adiciona motion */
+(function(){
+  var root=document.documentElement;
+  root.classList.add('js');
+
+  // reveal on scroll — mas NUNCA esconde conteúdo: failsafes garantem visibilidade
+  // em contextos sem scroll (PDF, print, screenshot, headless, aba em segundo plano).
+  var els=[].slice.call(document.querySelectorAll('.reveal'));
+  function revealAll(){els.forEach(function(el){el.classList.add('in');});}
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}
+      });
+    },{rootMargin:'0px 0px -8% 0px',threshold:0.08});
+    els.forEach(function(el){io.observe(el);});
+    // failsafe: revela tudo que já está em viewport no load + rede de segurança no tempo
+    window.addEventListener('load',function(){
+      els.forEach(function(el){
+        if(el.getBoundingClientRect().top < window.innerHeight*0.96){el.classList.add('in');}
+      });
+    });
+    setTimeout(revealAll,1900);
+  }else{
+    revealAll();
+  }
+
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // ---- stagger: filhos dos grids entram em sequência ----
+  var staggers=[].slice.call(document.querySelectorAll('.stagger'));
+  function staggerIn(el){
+    var ch=el.children;
+    for(var i=0;i<ch.length;i++){ ch[i].style.transitionDelay = Math.min(i*0.05,0.6)+'s'; }
+    el.classList.add('in');
+  }
+  if('IntersectionObserver' in window){
+    var sio=new IntersectionObserver(function(es){
+      es.forEach(function(e){ if(e.isIntersecting){ staggerIn(e.target); sio.unobserve(e.target); } });
+    },{rootMargin:'0px 0px -8% 0px',threshold:0.05});
+    staggers.forEach(function(el){ sio.observe(el); });
+    setTimeout(function(){ staggers.forEach(function(el){ el.classList.add('in'); }); },2000);
+  }else{ staggers.forEach(function(el){ el.classList.add('in'); }); }
+
+  // ---- count-up dos números da oportunidade ----
+  function animateNum(el){
+    var tn=el.childNodes[0];
+    if(!tn || tn.nodeType!==3) return;
+    var raw=tn.nodeValue, m=raw.match(/^(\D*)([\d.,]+)(\D*)$/);
+    if(!m) return;
+    var prefix=m[1], numStr=m[2], suffix=m[3];
+    var decimals=(numStr.split(',')[1]||'').length;
+    var target=parseFloat(numStr.replace(/\./g,'').replace(',','.'));
+    if(isNaN(target)) return;
+    function fmt(v){ return prefix+v.toFixed(decimals).replace('.',',')+suffix; }
+    var dur=1300, start=null;
+    function step(ts){ if(!start)start=ts; var p=Math.min((ts-start)/dur,1); var e=1-Math.pow(1-p,3); tn.nodeValue=fmt(target*e); if(p<1){requestAnimationFrame(step);}else{tn.nodeValue=raw;} }
+    tn.nodeValue=fmt(0); requestAnimationFrame(step);
+  }
+  var ledger=document.querySelector('.ledger');
+  if(ledger && !reduce && 'IntersectionObserver' in window){
+    var cio=new IntersectionObserver(function(es){
+      es.forEach(function(e){ if(e.isIntersecting){ [].slice.call(e.target.querySelectorAll('.num')).forEach(animateNum); cio.unobserve(e.target); } });
+    },{threshold:0.3});
+    cio.observe(ledger);
+  }
+
+  // nav hide on scroll down / show on scroll up
+  var nav=document.getElementById('nav'),last=0;
+  window.addEventListener('scroll',function(){
+    var y=window.pageYOffset;
+    if(y>last && y>240){nav.classList.add('hide');}else{nav.classList.remove('hide');}
+    last=y;
+  },{passive:true});
+})();
+</script>
+</body>
+</html>
