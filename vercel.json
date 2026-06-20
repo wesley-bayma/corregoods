@@ -3,7 +3,7 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "rewrites": [
-    { "source": "/", "destination": "/corre-goods-001-apresentacao.html" }
+    { "source": "/", "destination": "/corre-goods-001-apresentacao" }
   ],
   "headers": [
     {
