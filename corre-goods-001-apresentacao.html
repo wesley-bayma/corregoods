@@ -514,6 +514,28 @@ section{position:relative}
 .kicker .dot{animation:dotPulse 2.6s ease-in-out infinite}
 /* marquee pausa no hover */
 .marquee:hover .marquee-track{animation-play-state:paused}
+
+/* ---------- seção 01 · equação empilhada (chaves longas) ---------- */
+#significado .equation{margin-top:0;border-top:1px solid var(--line)}
+#significado .eq-row{grid-template-columns:1fr;gap:8px;padding:18px 0 20px}
+#significado .eq-row .k{font-size:clamp(17px,2vw,23px);line-height:1.06}
+#significado .eq-row .v{font-size:15px;line-height:1.45;max-width:52ch}
+
+/* ---------- micro-interações (skill: hover-lift, slide, press) ---------- */
+.eq-row{transition:padding-left .35s var(--ease),border-color .35s}
+.eq-row:hover{padding-left:10px;border-color:var(--line-strong)}
+.eq-row:hover .k .pt{color:var(--acid-ink)}
+.cell{transition:transform .35s var(--ease)}
+.cell:hover{transform:translateY(-4px)}
+.btn,.nav-cta{will-change:transform}
+.btn:active,.nav-cta:active{transform:scale(.96)}
+.btn:hover .arr{transform:translateX(4px)}
+/* outline sutil nas fotos (skill: image outlines) */
+.frame-photo{outline:1px solid rgba(0,0,0,.08);outline-offset:-1px}
+.dark .frame-photo{outline-color:rgba(255,255,255,.1)}
+/* números dinâmicos sem layout shift (skill: tabular-nums) */
+.ledger .num{font-variant-numeric:tabular-nums}
+
 @media(prefers-reduced-motion:reduce){
   *{animation:none!important;scroll-behavior:auto!important}
   .js .reveal{opacity:1!important;transform:none!important;transition:none!important}
@@ -521,6 +543,9 @@ section{position:relative}
   .frame-photo{transition:none!important}
   .frame:hover .frame-photo{transform:none!important}
   .marquee-track{animation:none!important}
+  .eq-row:hover{padding-left:0!important}
+  .cell:hover{transform:none!important}
+  .btn:active,.nav-cta:active{transform:none!important}
 }
 /* impressão / PDF: remove a textura de grãos (rasteriza pesado) e garante fundos */
 @media print{
@@ -615,8 +640,8 @@ section{position:relative}
         <h2 class="tese-title">Corre é<br>movimento.<br><em>Goods é o que fica.</em></h2>
         <p class="lede" style="margin-top:24px">CORRE GOODS nasce da união entre uma <strong>expressão brasileira</strong> e uma <strong>linguagem de lifestyle</strong>. <strong>Corre</strong> é corrida, rotina, energia, rua e vontade de fazer acontecer. <strong>Goods</strong> são os elementos que vivem em volta do percurso: a experiência, a música, a estética, a camiseta, o after run, o conteúdo e as conexões que ficam depois.</p>
       </div>
-      <div class="reveal d1">
-        <div class="equation">
+      <div>
+        <div class="equation stagger">
           <div class="eq-row"><span class="k">Os essenciais do corre<span class="pt">.</span></span><span class="v">tudo o que você veste, ouve e leva pra rua.</span></div>
           <div class="eq-row"><span class="k">As coisas boas do movimento<span class="pt">.</span></span><span class="v">o que nasce quando a galera se junta pra correr.</span></div>
           <div class="eq-row"><span class="k">O universo da corrida<span class="pt">.</span></span><span class="v">música, estética e cultura em volta do percurso.</span></div>
@@ -680,7 +705,7 @@ section{position:relative}
       <p class="lede reveal d1">O formato corrida + eletrônica + after já é fenômeno comprovado e lucrativo lá fora e em São Paulo. Em São Luís, ninguém fez ainda — e a cidade tem os ativos perfeitos: orla de 7km, calor social, luz da manhã e cena criativa jovem.</p>
     </div>
 
-    <div class="ledger reveal">
+    <div class="ledger stagger">
       <div class="cell"><div class="num">R$ 1,1<span class="pt">bi</span></div><div class="desc">Mercado de corrida de rua no Brasil em 2025.<span class="src">Fonte: ABRACEO / CBAt</span></div></div>
       <div class="cell"><div class="num">+85<span class="pt">%</span></div><div class="desc">Salto de provas oficiais: 2.827 (2024) → 5.241 (2025).<span class="src">Fonte: ABRACEO</span></div></div>
       <div class="cell"><div class="num">+800<span class="pt">%</span></div><div class="desc">Crescimento de novos run clubs no Brasil — o país mais social do Strava.<span class="src">Fonte: Strava Year in Sport 2025</span></div></div>
