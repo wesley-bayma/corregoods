@@ -1,0 +1,16 @@
+# Deploy só o necessário para o site (HTML + assets + PDF + vercel.json)
+.agents/
+.claude/
+.gstack/
+node_modules/
+skills-lock.json
+
+# Pesados/desnecessários no site público
+imagens/
+docs/
+GUIA-APRESENTACAO.md
+README.md
+CorreGoods (1).png
+CorreGoods (2).png
+CorreGoods (3).png
+corregoods.png
